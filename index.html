@@ -1,100 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br" >
 
 <head>
+  <script src="js/angular.js"></script>
+  <script src="js/ManegementProcess.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+    integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+    crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>TAREFAS</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/font-awesome.css">
+ 
 </head>
-<body>
+
+<body ng-app="ManegementProcess">
+  <script src="js/angular.js"></script>
   <section class="w3l-contact-11">
     <div class="contacts-main">
       <div class="contant11-top-bg">
         <div class="wrapper">
           <div class="d-grid contact section-gap">
             <div class="contact-info-left d-grid text-center">
-              <!-- <div class="contact-info">
-                <span class="fa fa-location-arrow" aria-hidden="true"></span>
-                <h4>Address</h4>
-                <p>4885 Pretty View Lane, Lorem ipsum, Dolor sit amet, New York, USA</p>
-              </div>
-              <div class="contact-info">
-                <span class="fa fa-phone" aria-hidden="true"></span>
-                <h4>Phone</h4>
-                <p><a href="tel:+44 7834 857829">+44 7834 857829</a></p>
-                <p><a href="tel:+44 987 654 321">+44 987 654 321</a></p>
-              </div>
-              <div class="contact-info">
-                <span class="fa fa-envelope-open-o" aria-hidden="true"></span>
-                <h4>Mail</h4>
-                <p><a href="mailto:mail@example.com" class="email">mail@example.com</a></p>
-                <p><a href="mailto:mail@example.com" class="email">mail@example.com</a></p>
-              </div> -->
             </div>
           </div>
         </div>
       </div>
-      <!-- <div class="form-41-mian section-gap">
+      <div class="form-41-mian section-gap">
         <div class="wrapper">
-          <h3 class="cont-head">Cadastro de Usuário</h3>
-          <div class="d-grid align-form-map">
-            <div class="form-inner-cont">
-              <form class="signin-form">
-                <div class="form-input">
+          <h3 class="cont-head">Cadastro de Usuário - {{1+1}}</h3>
+          <div class="form-inner-cont">
+            <form class="signin-form">
+              <div class="form-input">
 
-                  <label for="w3lName">Nome Completo</label>
-                  <input type="text" name="w3lName" id="w3lName" placeholder="" />
-                  <label for="w3lName">Login</label>
-                  <input type="text" name="w3lName" id="w3lName" placeholder="" />
-                  <label for="w3lMessage">Senha</label>
-                  <input type="text" name="w3lName" id="w3lName" placeholder="" />
-                  <label for="w3lMessage">Perfil</label>
-                  <input type="text" name="w3lName" id="w3lName" placeholder="" />
-               
+                <label for="w3lName">Nome Completo</label>
+                <input type="text" name="w3lName" id="w3lName" placeholder="" />
+                <label for="w3lName">Login</label>
+                <input type="text" name="w3lName" id="w3lName" placeholder="" />
+                <label for="w3lMessage">Senha</label>
+                <input type="text" name="w3lName" id="w3lName" placeholder="" />
+                <label for="w3lMessage">Perfil</label>
+                <input type="text" name="w3lName" id="w3lName" placeholder="" />
+              </div>
+
+              <button type="submit" class="btn btn-contact">Submit</button>
+
+            </form>
+          </div>
+          <div class="form-41-mian section-gap">
+            <div class="wrapper">
+              <h3 class="cont-head">Cadastro de Tarefas</h3>
+              <div class="d-grid align-form-map">
+                <div class="form-inner-cont">
+                  <form class="signin-form">
+                    <div class="form-input">
+
+                      <label for="w3lName">Descrição</label>
+                      <input type="text" name="w3lName" id="w3lName" placeholder="" />
+                      <label for="w3lName">Atribuido:</label>
+                      <input type="text" name="w3lName" id="w3lName" placeholder="" />
+                      <label for="w3lMessage">Parecer</label>
+                      <textarea type="text" name="w3lName" id="w3lName" placeholder=""></textarea>
+
+                    </div>
+
+                    <button type="submit" class="btn btn-contact">Salvar</button>
+
+                  </form>
+                </div>
+                <div style="border-block-color: unset;">
+                  <h1>Lista de Tarefas </h1>
+                  <br />
+                  <div class="row">
+                    <span  class="h4"><ins>Verificar Placa Mãe Note Dell</ins> </span>
+                    <span style="color: red;"> Desatribuido</span> 
+                    <button type="button" class="btn btn-success">Abrir</button>
+                  </div>
+
+
                 </div>
 
-                <button type="submit" class="btn btn-contact">Submit</button>
-
-              </form>
-            </div> -->
-            <div class="form-41-mian section-gap">
-              <div class="wrapper">
-                <h3 class="cont-head">Cadastro de Tarefas</h3>
-                <div class="d-grid align-form-map">
-                  <div class="form-inner-cont">
-                    <form class="signin-form">
-                      <div class="form-input">
-      
-                        <label for="w3lName">Descrição</label>
-                        <input type="text" name="w3lName" id="w3lName" placeholder="" />
-                        <label for="w3lName">Atribuido:</label>
-                        <input type="text" name="w3lName" id="w3lName" placeholder="" />
-                        <label for="w3lMessage">Parecer</label>
-                        <textarea type="text" name="w3lName" id="w3lName" placeholder=""></textarea>
-                     
-                      </div>
-      
-                      <button type="submit" class="btn btn-contact">Salvar</button>
-      
-                    </form>
-                  </div>
-            <div style="border-block-color: unset;">
-             <h1>Lista de Tarefas</h1>
-            <div class="row">
-                <span>Verificar Placa Mãe Note Dell  </span> - - <span> Desatribuido</span>  <button type="submit" style="padding-inline: 20px;" class="btn btn">Abrir</button>
+              </div>
             </div>
-
-             <div class="row">
-              <span>Verificar Placa Mãe Note Dell  </span> - - <span> Desatribuido</span>  <button type="submit" style="padding-inline: 20px;" class="btn btn">Abrir</button>
-             </div>
-            
-            </div>
-          </div>
-        </div>
-      </div>
   </section>
 </body>
 
