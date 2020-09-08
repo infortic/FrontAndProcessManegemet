@@ -288,7 +288,7 @@ form.signin-form {
 .form-inner-cont input,
 .form-inner-cont textarea {
   outline: none;
-  width: 100%;
+  width: 70%;
   font-size: 15px;
   padding: 0px 15px;
   margin-bottom: 25px;
@@ -328,11 +328,10 @@ form.signin-form {
   text-align: center;
   color: #000000;
   background: #fff;
-  padding: 14px 18px;
   border-radius: 4px;
   transition: 0.3s ease;
   border: 1px solid #002663;
-  width: 100%;
+  width: 70%;
   margin-top: 15px;
   text-transform: uppercase;
 }
