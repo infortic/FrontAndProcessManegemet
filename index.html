@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br" >
-
 <head>
   <script src="js/angular.js"></script>
   <script src="js/ManegementProcess.js"></script>
-  <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
-  <!-- Optional theme -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
     integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-
-  <!-- Latest compiled and minified JavaScript -->
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
     integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
     crossorigin="anonymous"></script>
@@ -22,12 +16,10 @@
   <title>TAREFAS</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/font-awesome.css">
- 
 </head>
 
 <body ng-app="ManegementProcess">
-  <script src="js/angular.js"></script>
-  <section class="w3l-contact-11">
+   <section class="w3l-contact-11">
     <div class="contacts-main">
       <div class="contant11-top-bg">
         <div class="wrapper">
@@ -39,11 +31,11 @@
       </div>
       <div class="form-41-mian section-gap">
         <div class="wrapper">
-          <h3 class="cont-head">Cadastro de Usuário - {{1+1}}</h3>
-          <div class="form-inner-cont">
+         
+          <div class="form-inner-cont" ng-if="false">
+            <h3 class="cont-head">Cadastro de Usuário</h3>
             <form class="signin-form">
               <div class="form-input">
-
                 <label for="w3lName">Nome Completo</label>
                 <input type="text" name="w3lName" id="w3lName" placeholder="" />
                 <label for="w3lName">Login</label>
@@ -53,32 +45,29 @@
                 <label for="w3lMessage">Perfil</label>
                 <input type="text" name="w3lName" id="w3lName" placeholder="" />
               </div>
-
               <button type="submit" class="btn btn-contact">Submit</button>
-
             </form>
           </div>
+
           <div class="form-41-mian section-gap">
             <div class="wrapper">
-              <h3 class="cont-head">Cadastro de Tarefas</h3>
               <div class="d-grid align-form-map">
-                <div class="form-inner-cont">
+
+                <div class="form-inner-cont" ng-if="false">
+                  <h3 class="cont-head">Cadastro de Tarefas</h3>
                   <form class="signin-form">
                     <div class="form-input">
-
                       <label for="w3lName">Descrição</label>
                       <input type="text" name="w3lName" id="w3lName" placeholder="" />
                       <label for="w3lName">Atribuido:</label>
                       <input type="text" name="w3lName" id="w3lName" placeholder="" />
                       <label for="w3lMessage">Parecer</label>
                       <textarea type="text" name="w3lName" id="w3lName" placeholder=""></textarea>
-
                     </div>
-
                     <button type="submit" class="btn btn-contact">Salvar</button>
-
                   </form>
                 </div>
+
                 <div style="border-block-color: unset;">
                   <h1>Lista de Tarefas </h1>
                   <br />
@@ -87,8 +76,6 @@
                     <span style="color: red;"> Desatribuido</span> 
                     <button type="button" class="btn btn-success">Abrir</button>
                   </div>
-
-
                 </div>
 
               </div>
