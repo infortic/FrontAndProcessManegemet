@@ -11,6 +11,8 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
     $scope.editarTarefa = editarTarefa;
     $scope.cancelUser = cancelUser;
     $scope.removerUser = removerUser;
+    $scope.editarUser = editarUser;
+    $scope.perfils = ["administrador", "triador", "finalizador"]
 
     init()
     function init() {
@@ -18,28 +20,59 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
         daoUserfaGetAll()
     }
 
-
-
-    function saveUser(nome, login, password, perfil) {
-        const data = {
+    function saveUser(nome, login, password, password2, perfil, id) {
+       if(id != null){
+        const user1 = {
             "LOGIN": login,
-            "NOME": nome,
+            "nome": nome,
             "PERFIL": perfil,
             "PASSWORD": password,
-            "id": 1
+            "PASSWORD2": password2,
+            "id": id
         }
-        daoUser(data)
+        daoUser(user1)
+       }else{
+        const user2 = {
+            "LOGIN": login,
+            "nome": nome,
+            "PERFIL": perfil,
+            "PASSWORD": password,
+            "PASSWORD2": password2,
+        }
+        daoUser(user2)
+       }
+    }
+
+    function validatyUser(data) {
+        if (data.LOGIN == null) {
+            $window.alert("O campo LOGIN deve ser preenchido")
+            return;
+        } else if (data.PERFIL == null) {
+            $window.alert("Por favor escolha um PERFIL")
+            return;
+        } else if (data.PASSWORD == null) {
+            $window.alert("O campo PASSWORD deve ser preenchido")
+            return;
+        } else if (data.PASSWORD2 == null) {
+            $window.alert("Os campos PASSWORD2 são obrigatorios")
+            return;
+        } else {
+            if (data.PASSWORD != data.PASSWORD2) {
+                $window.alert("Senhas diferentes informadas")
+                return;
+            }
+        }
+        return true;
     }
 
     function daoUser(data) {
-        $http.post("http://localhost:8080/user/salvar", data).then(function (response) {
-            if (response.status == 200) {
-                $window.alert("Usuário salvo com sucesso")
-                $window.location.reload();
-            } else {
-                $window.alert("Erro: " + response.status)
-            }
-        });
+        if (validatyUser(data)) {
+            $http.post("http://localhost:8080/user/salvar", data)
+                .then(function (response) {
+                    $window.alert("Usuário salvo com sucesso")
+                    $window.location.reload();
+                });
+        }
     }
 
     function toGoAssignment() {
@@ -59,31 +92,45 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
         $scope.canCreateAssignment = false;
     }
 
-
-
-    function saveTarefa(assigned, description, opinion) {
-
+    function saveTarefa(assigned, description, opinion, id) {
         var nome = description;
 
-        const data = {
-            assigned,
-            nome: nome,
-            opinion
+        if (id == null) {
+            const tarefa1 = {
+                assigned,
+                nome: nome,
+                opinion,
+            }
+            daoTarefa(tarefa1)
+        } else {
+            const tarefa2 = {
+                assigned,
+                nome: nome,
+                opinion,
+                id
+            }
+            daoTarefa(tarefa2)
         }
-
-        daoTarefa(data)
 
     }
 
+    function validateTarefa(data) {
+        data.assigned == null ? data.assigned = "DESATRIBUIDO" : data.assigned;
+        if (data.nome == null) {
+            $window.alert("Preencha o campo descrição")
+            return false;
+        }
+        return true;
+    }
+
     function daoTarefa(data) {
-        $http.post("http://localhost:8080/tarefa/salvar", data).then(function (response) {
-            if (response.status == 200) {
-                init()
-                $window.alert("Tarefa Salva ComSucesso")
-            } else {
-                $window.alert("Erro: " + response.status)
-            }
-        });
+        if (validateTarefa(data)) {
+            $http.post("http://localhost:8080/tarefa/salvar", data).then(function (response) {
+                    $window.alert("Tarefa Salva ComSucesso")
+                    $window.location.reload();
+                
+            });
+        }
     }
 
     function daoTarefaGetAll() {
@@ -110,7 +157,7 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
     }
 
     function editarTarefa(tarefa) {
-
+        $scope.id = tarefa.id
         $scope.description = tarefa.nome
         $scope.assigned = tarefa.assigned
         $scope.opinion = tarefa.opinion
@@ -119,8 +166,12 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
 
     }
 
-    function editarUser(user){
-        
+    function editarUser(user) {
+        $scope.id = user.id
+        $scope.login = user.LOGIN
+        $scope.nome = user.nome
+        $scope.perfil = user.PERFIL
+
     }
 
     function cancelUser() {

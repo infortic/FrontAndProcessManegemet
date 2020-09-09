@@ -57,13 +57,22 @@
                   <input type="text" id="login" ng-model="login" />
 
                   <label for="senha">Senha</label>
-                  <input type="text" id="senha" ng-model="password" />
+                  <input type="password" id="senha" ng-model="password" />
+                  <label for="senha">Repita sua senha</label>
+                  <input type="password" id="senha" ng-model="password2" />
 
+                  <!-- 
+                  <input type="text"  ng-model="perfil" /> -->
                   <label for="perfil">Perfil</label>
-                  <input type="text" id="perfil" ng-model="perfil" />
+                  <select ng-model="perfil" id="perfil" class="form-control form-control-sm">
+                      <option ng-model="perfil" >{{perfils[0]}}</option>
+                      <option ng-model="perfil">{{perfils[1]}}</option>
+                      <option ng-model="perfil">{{perfils[2]}}</option>
+                  </select>
+
 
                 </div>
-                <button class="btn btn-contact" ng-click="saveUser(nome, login, password, perfil)">Salvar</button>
+                <button class="btn btn-contact" ng-click="saveUser(nome, login, password, password2, perfil, id)">Salvar</button>
                 <button class="btn btn-contact" ng-click="cancelUser()">Cancelar</button>
               </form>
             </td>
@@ -79,7 +88,7 @@
                   <textarea type="text" id="opinion" ng-model="opinion" value={{opinion}}></textarea>
                 </div>
                 <button type="submit" class="btn btn-contact"
-                  ng-click="saveTarefa(assigned, description, opinion)">Salvar</button>
+                  ng-click="saveTarefa(assigned, description, opinion, id)">Salvar</button>
                 <button type="submit" class="btn btn-contact" ng-click="cancelAssignment()">Cancelar</button>
               </form>
             </td>
@@ -157,7 +166,7 @@
               <td>{{userget.PERFIL}}</td>
             <td>
               <button type="button" class="btn btn-link" ng-click="removerUser(userget.id)">Excluir</button> -
-              <button type="button" class="btn btn-light" ng-click="editarTarefa(userget)">Editar</button>
+              <button type="button" class="btn btn-light" ng-click="editarUser(userget)">Editar</button>
             </td>
           </tr>
         </tbody>
