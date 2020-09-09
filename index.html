@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-br" ng-app="ManegementProcess" >
+<html lang="pt-br" ng-app="ManegementProcess">
+
 <head>
   <script src="js/angular.js"></script>
   <script src="js/ManegementProcess.js"></script>
@@ -19,81 +20,155 @@
 </head>
 
 <body ng-controller="ManegementProcessCTRL">
-  
-   <section class="w3l-contact-11">
+
+  <section class="w3l-contact-11">
     <div class="contacts-main">
+
       <div class="contant11-top-bg">
+
         <div class="wrapper">
+
           <div class="d-grid contact section-gap">
-            <div class="contact-info-left d-grid text-center">
+            <div class="row">
+              <button type="button" class="btn btn-primary btn-sm" ng-click="toGoAssignment()">Tarefa</button>
+              <button type="button" class="btn btn-primary btn-sm" ng-click="user()">Usuario</button>
             </div>
+
           </div>
         </div>
       </div>
-      <div class="form-41-mian section-gap">
-        <div class="wrapper">
-         
-          <div class="form-inner-cont" >
-           
-            
-            <div class="container" ng-if="canCreateUser">
-              <form class="signin-form">
+    </div>
+
+
+
+    <div class="form-inner-cont">
+      <div class="container">
+        <table class="table">
+          <tr>
+            <td>
+              <form class="signin-form" ng-if="canCreateUser">
                 <h3 class="cont-head">Cadastro de Usuário</h3>
                 <div class="form-input">
-  
+
                   <label for="name">Nome Completo</label>
                   <input type="text" id="name" ng-model="nome" />
-  
-                  <label for="login">Login</label>
-                  <input type="text" id="login" ng-model="login"/>
-  
-                  <label for="senha">Senha</label>
-                  <input type="text" id="senha" ng-model="password"/>
-  
-                  <label for="perfil">Perfil</label>
-                  <input type="text" id="perfil" ng-model="perfil"/>
-  
-                </div>            
-                <button class="btn btn-contact" ng-click="saveUser(nome, login, password, perfil)">Salvar</button>
-              </form>
 
+                  <label for="login">Login</label>
+                  <input type="text" id="login" ng-model="login" />
+
+                  <label for="senha">Senha</label>
+                  <input type="text" id="senha" ng-model="password" />
+
+                  <label for="perfil">Perfil</label>
+                  <input type="text" id="perfil" ng-model="perfil" />
+
+                </div>
+                <button class="btn btn-contact" ng-click="saveUser(nome, login, password, perfil)">Salvar</button>
+                <button class="btn btn-contact" ng-click="cancelUser()">Cancelar</button>
+              </form>
+            </td>
+            <td>
               <form class="signin-form" ng-if="canCreateAssignment">
                 <h3 class="cont-head">Cadastro de Tarefas</h3>
                 <div class="form-input">
-                  <label for="w3lName">Descrição</label>
-                  <input type="text" name="w3lName" id="w3lName" placeholder="" />
-                  <label for="w3lName">Atribuido:</label>
-                  <input type="text" name="w3lName" id="w3lName" placeholder="" />
-                  <label for="w3lMessage">Parecer</label>
-                  <textarea type="text" name="w3lName" id="w3lName" placeholder=""></textarea>
+                  <label for="description">Descrição</label>
+                  <input type="text" id="description" ng-model="description" value={{description}} />
+                  <label for="assigned">Atribuido:</label>
+                  <input type="text" id="assigned" ng-model="assigned" value={{assigned}} />
+                  <label for="opinion">Parecer</label>
+                  <textarea type="text" id="opinion" ng-model="opinion" value={{opinion}}></textarea>
                 </div>
-                <button type="submit" class="btn btn-contact">Salvar</button>
+                <button type="submit" class="btn btn-contact"
+                  ng-click="saveTarefa(assigned, description, opinion)">Salvar</button>
+                <button type="submit" class="btn btn-contact" ng-click="cancelAssignment()">Cancelar</button>
               </form>
-            </div>
+            </td>
+          </tr>
+        </table>
+      </div>
 
-          
-            
-          </div>
 
-          <div class="form-41-mian section-gap">
-            <div class="wrapper">
-              <div class="d-grid align-form-map">
 
-            
 
-                <div style="border-block-color: unset;">
-                  <h1>Lista de Tarefas </h1>
-                  <br />
-                  <div class="row">
-                    <span  class="h4"><ins>Verificar Placa Mãe Note Dell</ins> </span>
-                    <span style="color: red;"> Desatribuido</span> 
-                    <button type="button" class="btn btn-success">Abrir</button>
-                  </div>
+
+
+
+
+
+
+
+      <!-- <div class="form-41-mian section-gap">
+          <div class="wrapper">
+            <div class="d-grid align-form-map">
+
+
+
+              <div style="border-block-color: unset;">
+                <h1>Lista de Tarefas </h1>
+                <br />
+                <div class="row" >
+                  <span class="h4"><ins>{{tarefa.nome}}</ins> </span>
+                  <span style="color: red;"> {{tarefa.assigned}}</span>
+                  <button type="button" class="btn btn-success">Abrir</button>
+                  <button type="button" class="btn btn-primary" >Nova tarefa</button>
                 </div>
-
               </div>
+
             </div>
+          </div>
+        </div> -->
+
+      <table class="table" ng-if="canCreateAssignment">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Atribuido</th>
+            <th scope="col">Parecer</th>
+            <th scope="col">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="tarefa in tarefas">
+            <td>{{tarefa.nome}}</td>
+            <td>{{tarefa.assigned}}</td>
+            <td>{{tarefa.opinion}}</td>
+            <td>
+              <button type="button" class="btn btn-link" ng-click="removerTarefa(tarefa.id)">Excluir</button> -
+              <button type="button" class="btn btn-light" ng-click="editarTarefa(tarefa)">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table" ng-if="canCreateUser">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Login</th>
+            <th scope="col">Perfil</th>
+            <th scope="col">Ação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="userget in users">
+            
+            <td>{{userget.nome}}</td>
+              <td>{{userget.LOGIN}}</td>
+              <td>{{userget.PERFIL}}</td>
+            <td>
+              <button type="button" class="btn btn-link" ng-click="removerUser(userget.id)">Excluir</button> -
+              <button type="button" class="btn btn-light" ng-click="editarTarefa(userget)">Editar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+    </div>
+
+
   </section>
+
 </body>
 
 </html>
