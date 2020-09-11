@@ -1,4 +1,4 @@
-# Gerencia de Tarefas
+# Gerência de Tarefas
 
 Aplicativo híbrido (compatível com celular, tablet, computador e etc...) para gestão de Tarefas.
 
