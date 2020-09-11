@@ -1,4 +1,4 @@
-angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", function ($scope, $http, $window) {
+angular.module("Triador", ['ngRoute']).controller("TriadorController", function ($scope, $http, $window) {
 
     $scope.canCreateUser = true;
     $scope.canCreateAssignment = false;
@@ -13,7 +13,8 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
     $scope.removerUser = removerUser;
     $scope.editarUser = editarUser;
     $scope.perfils = ["administrador", "triador", "finalizador"]
-
+    $scope.loginAcess = loginAcess;
+    $scope.sair = sair;
     init()
     function init() {
         daoTarefaGetAll()
@@ -21,26 +22,26 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
     }
 
     function saveUser(nome, login, password, password2, perfil, id) {
-       if(id != null){
-        const user1 = {
-            "LOGIN": login,
-            "nome": nome,
-            "PERFIL": perfil,
-            "PASSWORD": password,
-            "PASSWORD2": password2,
-            "id": id
+        if (id != null) {
+            const user1 = {
+                "LOGIN": login,
+                "nome": nome,
+                "PERFIL": perfil,
+                "PASSWORD": password,
+                "PASSWORD2": password2,
+                "id": id
+            }
+            daoUser(user1)
+        } else {
+            const user2 = {
+                "LOGIN": login,
+                "nome": nome,
+                "PERFIL": perfil,
+                "PASSWORD": password,
+                "PASSWORD2": password2,
+            }
+            daoUser(user2)
         }
-        daoUser(user1)
-       }else{
-        const user2 = {
-            "LOGIN": login,
-            "nome": nome,
-            "PERFIL": perfil,
-            "PASSWORD": password,
-            "PASSWORD2": password2,
-        }
-        daoUser(user2)
-       }
     }
 
     function validatyUser(data) {
@@ -67,10 +68,12 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
 
     function daoUser(data) {
         if (validatyUser(data)) {
-            $http.post("http://localhost:8080/user/salvar", data)
-                .then(function (response) {
+            $http.post("http://localhost:5001/user/salvar", data)
+                .then(() => {
                     $window.alert("Usuário salvo com sucesso")
                     $window.location.reload();
+                }, (response)=> {
+                    $window.alert("Este login já esta em uso! por favor escolha outro!")
                 });
         }
     }
@@ -84,7 +87,6 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
     function cancelAssignment() {
         $scope.canCreateAssignment = false;
     }
-
 
     function user() {
         $scope.nome = ""
@@ -125,16 +127,16 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
 
     function daoTarefa(data) {
         if (validateTarefa(data)) {
-            $http.post("http://localhost:8080/tarefa/salvar", data).then(function (response) {
-                    $window.alert("Tarefa Salva ComSucesso")
-                    $window.location.reload();
-                
+            $http.post("http://localhost:5001/tarefa/salvar", data).then(function (response) {
+                $window.alert("Tarefa Salva ComSucesso")
+                $window.location.reload();
+
             });
         }
     }
 
     function daoTarefaGetAll() {
-        $http.get("http://localhost:8080/tarefa/tudo").then(function (response) {
+        $http.get("http://localhost:5001/tarefa/tudo").then(function (response) {
             if (response.status == 200) {
                 $scope.tarefas = response.data
 
@@ -146,7 +148,7 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
 
     function removerTarefa(id) {
 
-        $http.delete("http://localhost:8080/tarefa/deletar/" + id).then(function (response) {
+        $http.delete("http://localhost:5001/tarefa/deletar/" + id).then(function (response) {
             if (response.status == 200) {
                 init()
                 // location.reload();
@@ -180,20 +182,14 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
 
 
     function daoUserfaGetAll() {
-        $http.get("http://localhost:8080/user/tudo").then(function (response) {
-            if (response.status == 200) {
+        $http.get("http://localhost:5001/user/tudo").then(function (response) {
                 $scope.users = response.data.content
-                console.log($scope.users)
-
-            } else {
-                return
-            }
         });
     }
 
     function removerUser(id) {
 
-        $http.delete("http://localhost:8080/user/deletar/" + id).then(function (response) {
+        $http.delete("http://localhost:5001/user/deletar/" + id).then(function (response) {
             if (response.status == 200) {
                 init()
                 // location.reload();
@@ -201,6 +197,32 @@ angular.module("ManegementProcess", []).controller("ManegementProcessCTRL", func
                 return
             }
         });
+    }
+
+    
+    function loginAcess(login,senha) {
+        $http.get("http://localhost:5001/login/"+login+","+senha).then(function (response) {
+            $scope.UserLoginPerfil = response.data;
+            if(response.data != "Acesso não autorizado"){
+                 verifyPerfil()
+            }else{
+                $window.alert(response.data)
+            }
+            
+        });
+    }
+
+    function verifyPerfil(){
+        $scope.usuarioSim = true;
+        toGoHome()
+    }
+
+    function toGoHome(){
+        window.location.href = "/home";
+    }
+
+    function sair(){
+        window.location.href = "/";
     }
 
 });

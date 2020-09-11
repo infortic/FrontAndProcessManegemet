@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="Finalizador">
+
+<head>
+  <script src="../js/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-route.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+    integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+    crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TAREFAS</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.css">
+  <script src="FinalizadorController.js"></script>
+</head>
+
+<body ng-controller="FinalizadorController">
+  <section class="w3l-contact-11">
+    <div class="contacts-main">
+      <div class="contant11-top-bg">
+        <div class="wrapper">
+          <div class="d-grid contact section-gap">
+          </div>
+        </div>
+      </div>
+      <div class="form-inner-cont">
+        <div class="container"><br/>
+          <form class="signin-form" ng-if="incluirParecer == true">
+            <h3 class="cont-head">Cadastro de Tarefas</h3>
+
+            <div class="form-input">
+              <label for="description">Descrição</label>
+              <input type="text" id="description" ng-model="description" value={{description}} ng-disabled="true" />
+              <label for="assigned">Atribuido:</label>
+              <input type="text" id="assigned" ng-model="assigned" value={{assigned}} ng-disabled="true" />
+              <label for="opinion">Parecer</label>
+              <textarea type="text" id="opinion" ng-model="opinion" value={{opinion}}></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-contact"
+              ng-click="saveTarefa(assigned, description, opinion, id)">Salvar</button>
+            <button type="submit" class="btn btn-contact" ng-click="cancelAssignment()">Cancelar</button>
+
+          </form>
+        </div>
+        <div class="container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Atribuido</th>
+                <th scope="col">Parecer</th>
+                <th scope="col">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="tarefa in tarefas">
+                <td ng-if="tarefa.opinion == null">{{tarefa.nome}}</td>
+                <td ng-if="tarefa.opinion == null">{{tarefa.assigned}}</td>
+                <td ng-if="tarefa.opinion == null">{{tarefa.opinion}}</td>
+                <td ng-if="tarefa.opinion == null">
+                  <button type="button" class="btn btn-primary" ng-click="editarTarefa(tarefa)">Editar</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+  </section>
+  <footer class="bottem-wthree-footer">
+    <button type="button" class="btn btn-danger" ng-click="sair()"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-power" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
+      <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z"/>
+    </svg></button>
+    
+    <p>
+      <br/>
+      © 09/2020 | By Cleiton
+    </p>
+  </footer>
+</body>
+
+</html>

@@ -1,183 +1,49 @@
 <!DOCTYPE html>
-<html lang="pt-br" ng-app="ManegementProcess">
+<html ng-app="ManegementProcess" lang="pt-br">
 
 <head>
-  <script src="js/angular.js"></script>
-  <script src="js/ManegementProcess.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
-    integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-    crossorigin="anonymous"></script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>TAREFAS</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/font-awesome.css">
+   <title>Login</title>
+   <script src="js/angular.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-route.js"></script>
+   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   <script>
+      addEventListener("load", function () { setTimeout(hideURLbar, 0); }, false); function hideURLbar() { window.scrollTo(0, 1); }
+   </script>
+   <link href="css/style.css" rel='stylesheet' type='text/css' media="all">
+   <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+   <script src="indexCOntroller.js"></script>
 </head>
 
 <body ng-controller="ManegementProcessCTRL">
-
-  <section class="w3l-contact-11">
-    <div class="contacts-main">
-
-      <div class="contant11-top-bg">
-
-        <div class="wrapper">
-
-          <div class="d-grid contact section-gap">
-            <div class="row">
-              <button type="button" class="btn btn-primary btn-sm" ng-click="toGoAssignment()">Tarefa</button>
-              <button type="button" class="btn btn-primary btn-sm" ng-click="user()">Usuario</button>
+   <div class="mid-class">
+      <div class="art-right-w3ls">
+         <form>
+            <h2>Faça login para continuar</h2>
+            <div class="main">
+               <div class="form-left-to-w3l">
+                  <input type="text" name="name" placeholder="Username" ng-model="inputLogin" required="">
+               </div>
+               <div class="form-left-to-w3l ">
+                  <input type="password" name="password" placeholder="Password"  ng-model="inputSenha" required="">
+               </div>
             </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <div class="form-inner-cont">
-      <div class="container">
-        <table class="table">
-          <tr>
-            <td>
-              <form class="signin-form" ng-if="canCreateUser">
-                <h3 class="cont-head">Cadastro de Usuário</h3>
-                <div class="form-input">
-
-                  <label for="name">Nome Completo</label>
-                  <input type="text" id="name" ng-model="nome" />
-
-                  <label for="login">Login</label>
-                  <input type="text" id="login" ng-model="login" />
-
-                  <label for="senha">Senha</label>
-                  <input type="password" id="senha" ng-model="password" />
-                  <label for="senha">Repita sua senha</label>
-                  <input type="password" id="senha" ng-model="password2" />
-
-                  <!-- 
-                  <input type="text"  ng-model="perfil" /> -->
-                  <label for="perfil">Perfil</label>
-                  <select ng-model="perfil" id="perfil" class="form-control form-control-sm">
-                      <option ng-model="perfil" >{{perfils[0]}}</option>
-                      <option ng-model="perfil">{{perfils[1]}}</option>
-                      <option ng-model="perfil">{{perfils[2]}}</option>
-                  </select>
-
-
-                </div>
-                <button class="btn btn-contact" ng-click="saveUser(nome, login, password, password2, perfil, id)">Salvar</button>
-                <button class="btn btn-contact" ng-click="cancelUser()">Cancelar</button>
-              </form>
-            </td>
-            <td>
-              <form class="signin-form" ng-if="canCreateAssignment">
-                <h3 class="cont-head">Cadastro de Tarefas</h3>
-                <div class="form-input">
-                  <label for="description">Descrição</label>
-                  <input type="text" id="description" ng-model="description" value={{description}} />
-                  <label for="assigned">Atribuido:</label>
-                  <input type="text" id="assigned" ng-model="assigned" value={{assigned}} />
-                  <label for="opinion">Parecer</label>
-                  <textarea type="text" id="opinion" ng-model="opinion" value={{opinion}}></textarea>
-                </div>
-                <button type="submit" class="btn btn-contact"
-                  ng-click="saveTarefa(assigned, description, opinion, id)">Salvar</button>
-                <button type="submit" class="btn btn-contact" ng-click="cancelAssignment()">Cancelar</button>
-              </form>
-            </td>
-          </tr>
-        </table>
-      </div>
-
-
-
-
-
-
-
-
-
-
-
-      <!-- <div class="form-41-mian section-gap">
-          <div class="wrapper">
-            <div class="d-grid align-form-map">
-
-
-
-              <div style="border-block-color: unset;">
-                <h1>Lista de Tarefas </h1>
-                <br />
-                <div class="row" >
-                  <span class="h4"><ins>{{tarefa.nome}}</ins> </span>
-                  <span style="color: red;"> {{tarefa.assigned}}</span>
-                  <button type="button" class="btn btn-success">Abrir</button>
-                  <button type="button" class="btn btn-primary" >Nova tarefa</button>
-                </div>
-              </div>
-
+            <div class="btnn">
+               <button class="btn btn-primary" ng-click="loginAcess(inputLogin, inputSenha)">Entrar</button>
             </div>
-          </div>
-        </div> -->
-
-      <table class="table" ng-if="canCreateAssignment">
-        <thead>
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Atribuido</th>
-            <th scope="col">Parecer</th>
-            <th scope="col">Ação</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="tarefa in tarefas">
-            <td>{{tarefa.nome}}</td>
-            <td>{{tarefa.assigned}}</td>
-            <td>{{tarefa.opinion}}</td>
-            <td>
-              <button type="button" class="btn btn-link" ng-click="removerTarefa(tarefa.id)">Excluir</button> -
-              <button type="button" class="btn btn-light" ng-click="editarTarefa(tarefa)">Editar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <table class="table" ng-if="canCreateUser">
-        <thead>
-          <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Login</th>
-            <th scope="col">Perfil</th>
-            <th scope="col">Ação</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="userget in users">
-            
-            <td>{{userget.nome}}</td>
-              <td>{{userget.LOGIN}}</td>
-              <td>{{userget.PERFIL}}</td>
-            <td>
-              <button type="button" class="btn btn-link" ng-click="removerUser(userget.id)">Excluir</button> -
-              <button type="button" class="btn btn-light" ng-click="editarUser(userget)">Editar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-    </div>
-    </div>
-
-
-  </section>
-
+         </form>
+      </div>
+      <div class="art-left-w3ls">
+         <h1 class="header-w3ls">
+            Gestão de Processos de Forma Facil e segura!
+         </h1>
+      </div>
+   </div>
+   <footer class="bottem-wthree-footer">
+      <p>
+         © 09/2020 | By Cleiton
+      </p>
+   </footer>
 </body>
 
 </html>

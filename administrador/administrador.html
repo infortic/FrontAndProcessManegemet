@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br" ng-app="Administrador">
+
+<head>
+  <script src="../js/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.7.7/angular-route.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+    integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+    crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>TAREFAS</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.css">
+  <script src="administradorController.js"></script>
+</head>
+
+<body ng-controller="AdministradorController">
+  <section class="w3l-contact-11">
+    <div class="contacts-main">
+      <div class="contant11-top-bg">
+        <div class="wrapper">
+          <div class="d-grid contact section-gap">
+            <div class="row">
+              <button type="button" class="btn btn-primary btn-sm" ng-click="user()">Usuario</button>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-inner-cont">
+      <div class="container"><br/>
+        <form class="signin-form" ng-if="canCreateUser">
+          <h3 class="cont-head">Cadastro de Usuário</h3>
+          <div class="form-input">
+            <label for="name">Nome Completo</label>
+            <input type="text" id="name" ng-model="nome" />
+
+            <label for="login">Login</label>
+            <input type="text" id="login" ng-model="login" required />
+
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" ng-model="password" required />
+            <label for="senha2">Repita sua senha</label>
+            <input type="password" id="senha2" ng-model="password2" required />
+
+            <label for="perfil">Perfil</label>
+            <select ng-model="perfil" id="perfil" value="perfil" class="form-control form-control-sm" required>
+              <option ng-model="perfil">{{perfils[0]}}</option>
+              <option ng-model="perfil">{{perfils[1]}}</option>
+              <option ng-model="perfil">{{perfils[2]}}</option>
+            </select>
+          </div>
+
+          <button class="btn btn-contact"
+            ng-click="saveUser(nome, login, password, password2, perfil, id)">Salvar</button>
+
+          <button class="btn btn-contact" ng-click="cancelUser()">Cancelar</button>
+        </form>
+      </div>
+
+      <div class="container">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Login</th>
+              <th scope="col">Perfil</th>
+              <th scope="col">Ação</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="userget in users">
+              <td>{{userget.nome}}</td>
+              <td>{{userget.LOGIN}}</td>
+              <td>{{userget.PERFIL}}</td>
+              <td>
+                <button type="button" class="btn btn-danger" ng-click="removerUser(userget.id)">Excluir</button> -
+                <button type="button" class="btn btn-primary" ng-click="editarUser(userget)">Editar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <footer class="bottem-wthree-footer">
+    <button type="button" class="btn btn-danger" ng-click="sair()"><svg width="2em" height="2em" viewBox="0 0 16 16" class="bi bi-power" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"/>
+      <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z"/>
+    </svg></button>
+    
+    <p>
+      <br/>
+      © 09/2020 | By Cleiton
+    </p>
+  </footer>
+</body>
+
+</html>
