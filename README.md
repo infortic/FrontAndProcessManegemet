@@ -6,7 +6,7 @@
 Aplicativo híbrido (compatível com celular, tablet, computador e etc...) para gestão de Tarefas.
 
 Requisito: 
-Esta com a api "ProcessManeger" rodando. Você pode baixa-la neste link: https://github.com/infortic/ProcessManeger, leia o readmin para saber coomo configurar e subir a API. :)
+Estar com a api "ProcessManeger" rodando. Você pode baixa-la neste link: https://github.com/infortic/ProcessManeger, leia o readmin para saber coomo configurar e subir a API. :)
 
 Funcionalidade: 
 
