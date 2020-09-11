@@ -3,7 +3,7 @@
 *Obs.: em caso de erro de cors recomendo criar uma instancia do google chorme sem o cors, basta criar um novo atalho para o chrome adicionando esta tag "--disable-web-security --disable-gpu --user-data-dir=c:/chromeTemp" no final do destino. 
 
 
-Aplicativo híbrido (compatível com celular, tablet, computador e etc...) para gestão de Tarefas.
+Aplicativo híbrido (compatível com celular, tablet, computador, etc...) para gestão de Tarefas.
 
 Requisito: 
 Estar com a api "ProcessManeger" rodando. Você pode baixa-la neste link: https://github.com/infortic/ProcessManeger, leia o readmin para saber coomo configurar e subir a API. :)
