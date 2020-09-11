@@ -1,5 +1,8 @@
 # Gerência de Tarefas
 
+*Obs.: em caso de erro de cross recomendo criar uma instancia do google chorme sem o cross, basta criar um novo atalho para o chrome adicionando esta tag "--disable-web-security --disable-gpu --user-data-dir=c:/chromeTemp" no final do destino. 
+
+
 Aplicativo híbrido (compatível com celular, tablet, computador e etc...) para gestão de Tarefas.
 
 Funcionalidade: 
