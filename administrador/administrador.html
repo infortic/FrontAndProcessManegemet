@@ -14,7 +14,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>TAREFAS</title>
+  <title>Usuários</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/font-awesome.css">
   <script src="administradorController.js"></script>
@@ -27,8 +27,7 @@
         <div class="wrapper">
           <div class="d-grid contact section-gap">
             <div class="row">
-              <button type="button" class="btn btn-primary btn-sm" ng-click="user()">Usuario</button>
-              
+              <button type="button" class="btn btn-primary btn-sm" ng-click="user()">Novo usuário</button>
             </div>
           </div>
         </div>
@@ -40,18 +39,18 @@
         <form class="signin-form" ng-if="canCreateUser">
           <h3 class="cont-head">Cadastro de Usuário</h3>
           <div class="form-input">
-            <label for="name">Nome Completo</label>
+            <label for="name">Nome:</label>
             <input type="text" id="name" ng-model="nome" />
 
-            <label for="login">Login</label>
+            <label for="login">Login:</label>
             <input type="text" id="login" ng-model="login" required />
 
-            <label for="senha">Senha</label>
+            <label for="senha">Senha:</label>
             <input type="password" id="senha" ng-model="password" required />
-            <label for="senha2">Repita sua senha</label>
+            <label for="senha2">Repita sua senha:</label>
             <input type="password" id="senha2" ng-model="password2" required />
 
-            <label for="perfil">Perfil</label>
+            <label for="perfil">Perfil:</label>
             <select ng-model="perfil" id="perfil" value="perfil" class="form-control form-control-sm" required>
               <option ng-model="perfil">{{perfils[0]}}</option>
               <option ng-model="perfil">{{perfils[1]}}</option>

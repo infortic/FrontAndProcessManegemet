@@ -27,7 +27,7 @@
         <div class="wrapper">
           <div class="d-grid contact section-gap">
             <div class="row">
-              <button type="button" class="btn btn-primary btn-sm" ng-click="toGoAssignment()">Usuário</button>
+              <button type="button" class="btn btn-primary btn-sm" ng-click="toGoAssignment()">Nova tarefa</button>
             </div>
           </div>
         </div>
@@ -41,17 +41,18 @@
           <h3 class="cont-head">Cadastro de Tarefas</h3>
 
           <div class="form-input">
-            <label for="description">Descrição</label>
+            <label for="description">Descrição:</label>
             <input type="text" id="description" ng-model="description" value={{description}} />
 
-            <label for="assigned">Perfil</label>
-            <select ng-model="assigned" ng-repeat="user in users" id="assigned" class="form-control form-control-sm"
-              required>
-              <option ng-model="assigned">{{user.LOGIN}}</option>
+            <label for="assigned">Atribuido a:</label>
+
+            
+            <select ng-model="assigned" id="assigned" class="form-control form-control-sm">
+              <option ng-repeat="user in users" ng-model="assigned">{{user.LOGIN}}</option>
             </select>
 
 
-            <label for="opinion">Parecer</label>
+            <label for="opinion">Parecer:</label>
             <textarea type="text" id="opinion" ng-model="opinion" value={{opinion}}></textarea>
           </div>
 
