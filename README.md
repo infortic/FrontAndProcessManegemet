@@ -1,6 +1,12 @@
-# Gerencia de Tarefas
+# Gerenciamento de Tarefas
 
-Aplicativo híbrido (compatível com celular, tablet, computador e etc...) para gestão de Tarefas.
+*Obs.: em caso de erro de cors recomendo criar uma instancia do google chorme sem o cors, basta criar um novo atalho para o chrome adicionando esta tag "--disable-web-security --disable-gpu --user-data-dir=c:/chromeTemp" no final do destino. 
+
+
+Aplicativo híbrido (compatível com celular, tablet, computador, etc...) para gestão de Tarefas.
+
+Requisito: 
+Estar com a api "ProcessManeger" rodando. Você pode baixa-la neste link: https://github.com/infortic/ProcessManeger, leia o readmin para saber coomo configurar e subir a API. :)
 
 Funcionalidade: 
 
@@ -25,8 +31,9 @@ Tipos de Perfil  de usuário:
 
 **Usuário: administrador
 **Senha: administrador 
+```
 Visão do usuário:
-
+```
 ![alt text](imgs/adm.png)
 
 `- triador`
@@ -35,8 +42,11 @@ Visão do usuário:
 
 **Usuário: triador
 **Senha: triador 
+
+```
 Visão do úsuario:
 
+```
 ![alt text](imgs/tri.png)
 
 `- finalizador`
@@ -45,8 +55,11 @@ Visão do úsuario:
 
 **Usuário: finalizador
 **Senha: finalizador 
+
+```
 Visão do usuário:
 
+```
 ![alt text](imgs/fin.png)
 
 
