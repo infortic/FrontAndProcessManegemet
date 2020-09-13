@@ -10,8 +10,8 @@ angular.module("Triador", ['ngRoute']).controller("TriadorController", function 
     $scope.sair = sair;
     init()
     function init() {
-        daoUserfaGetAll()
-        daoTarefaGetAll()
+        getAllUser()
+        getAllAssignment()
     }
 
     function toGoAssignment() {
@@ -33,7 +33,7 @@ angular.module("Triador", ['ngRoute']).controller("TriadorController", function 
                 nome: nome,
                 opinion,
             }
-            daoTarefa(tarefa1)
+            save(tarefa1)
         } else {
             const tarefa2 = {
                 assigned,
@@ -41,7 +41,7 @@ angular.module("Triador", ['ngRoute']).controller("TriadorController", function 
                 opinion,
                 id
             }
-            daoTarefa(tarefa2)
+            save(tarefa2)
         }
 
     }
@@ -55,7 +55,7 @@ angular.module("Triador", ['ngRoute']).controller("TriadorController", function 
         return true;
     }
 
-    function daoTarefa(data) {
+    function save(data) {
         if (validateTarefa(data)) {
             $http.post("http://localhost:5001/tarefa/salvar", data).then(function (response) {
                 $window.alert("Tarefa Salva ComSucesso")
@@ -65,7 +65,7 @@ angular.module("Triador", ['ngRoute']).controller("TriadorController", function 
         }
     }
 
-    function daoTarefaGetAll() {
+    function getAllAssignment() {
         $http.get("http://localhost:5001/tarefa/tudo").then(function (response) {
             if (response.status == 200) {
                 $scope.tarefas = response.data
@@ -86,7 +86,7 @@ angular.module("Triador", ['ngRoute']).controller("TriadorController", function 
 
     }
 
-    function daoUserfaGetAll() {
+    function getAllUser() {
         $http.get("http://localhost:5001/user/tudo").then(function (response) {
                 $scope.users = response.data.content
         });

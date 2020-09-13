@@ -8,7 +8,7 @@ angular.module("Finalizador", ['ngRoute']).controller("FinalizadorController", f
     $scope.sair = sair;
     init()
     function init() {
-        daoTarefaGetAll()
+        getAllAssignment()
     }
 
     function cancelAssignment() {
@@ -25,7 +25,7 @@ angular.module("Finalizador", ['ngRoute']).controller("FinalizadorController", f
                 nome: nome,
                 opinion,
             }
-            daoTarefa(tarefa1)
+            sava(tarefa1)
         } else {
             const tarefa2 = {
                 assigned,
@@ -33,7 +33,7 @@ angular.module("Finalizador", ['ngRoute']).controller("FinalizadorController", f
                 opinion,
                 id
             }
-            daoTarefa(tarefa2)
+            sava(tarefa2)
             
         }
 
@@ -48,17 +48,16 @@ angular.module("Finalizador", ['ngRoute']).controller("FinalizadorController", f
         return true;
     }
 
-    function daoTarefa(data) {
+    function sava(data) {
         if (validateTarefa(data)) {
             $http.post("http://localhost:5001/tarefa/salvar", data).then(function (response) {
                 $window.alert("Tarefa Salva ComSucesso")
                 $window.location.reload();
-
             });
         }
     }
 
-    function daoTarefaGetAll() {
+    function getAllAssignment() {
         $http.get("http://localhost:5001/tarefa/tudo").then(function (response) {
             if (response.status == 200) {
                 $scope.tarefas = response.data
@@ -77,7 +76,6 @@ angular.module("Finalizador", ['ngRoute']).controller("FinalizadorController", f
         $scope.opinion = tarefa.opinion
         $scope.canCreateUser = false;
         $scope.canCreateAssignment = true;
-
     }
 
     function sair(){
