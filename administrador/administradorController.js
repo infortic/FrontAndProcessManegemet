@@ -2,22 +2,15 @@ angular.module("Administrador", ['ngRoute']).controller("AdministradorController
     $scope.canCreateUser = false;
     $scope.canCreateAssignment = false;
     $scope.saveUser = saveUser;
-    $scope.toGoAssignment = toGoAssignment;
-    $scope.cancelAssignment = cancelAssignment;
     $scope.user = user;
-    $scope.saveTarefa = saveTarefa;
-    $scope.removerTarefa = removerTarefa;
-    $scope.editarTarefa = editarTarefa;
     $scope.cancelUser = cancelUser;
     $scope.removerUser = removerUser;
     $scope.editarUser = editarUser;
-    $scope.loginAcess = loginAcess;
     $scope.sair = sair;
     $scope.perfils = ["administrador", "triador", "finalizador"]
     init()
     function init() {
-        daoTarefaGetAll()
-        daoUserfaGetAll()
+        getAllUser()
     }
 
     function saveUser(nome, login, password, password2, perfil, id) {
@@ -77,94 +70,10 @@ angular.module("Administrador", ['ngRoute']).controller("AdministradorController
         }
     }
 
-    function toGoAssignment() {
-        $scope.nome = ""
-        $scope.canCreateUser = false;
-        $scope.canCreateAssignment = true;
-    }
-
-    function cancelAssignment() {
-        $scope.canCreateAssignment = false;
-    }
-
     function user() {
         $scope.nome = ""
         $scope.canCreateUser = true;
         $scope.canCreateAssignment = false;
-    }
-
-    function saveTarefa(assigned, description, opinion, id) {
-        var nome = description;
-
-        if (id == null) {
-            const tarefa1 = {
-                assigned,
-                nome: nome,
-                opinion,
-            }
-            daoTarefa(tarefa1)
-        } else {
-            const tarefa2 = {
-                assigned,
-                nome: nome,
-                opinion,
-                id
-            }
-            daoTarefa(tarefa2)
-        }
-
-    }
-
-    function validateTarefa(data) {
-        data.assigned == null ? data.assigned = "DESATRIBUIDO" : data.assigned;
-        if (data.nome == null) {
-            $window.alert("Preencha o campo descrição")
-            return false;
-        }
-        return true;
-    }
-
-    function daoTarefa(data) {
-        if (validateTarefa(data)) {
-            $http.post("http://localhost:5001/tarefa/salvar", data).then(function (response) {
-                $window.alert("Tarefa Salva ComSucesso")
-                $window.location.reload();
-
-            });
-        }
-    }
-
-    function daoTarefaGetAll() {
-        $http.get("http://localhost:5001/tarefa/tudo").then(function (response) {
-            if (response.status == 200) {
-                $scope.tarefas = response.data
-
-            } else {
-                return
-            }
-        });
-    }
-
-    function removerTarefa(id) {
-
-        $http.delete("http://localhost:5001/tarefa/deletar/" + id).then(function (response) {
-            if (response.status == 200) {
-                init()
-                // location.reload();
-            } else {
-                return
-            }
-        });
-    }
-
-    function editarTarefa(tarefa) {
-        $scope.id = tarefa.id
-        $scope.description = tarefa.nome
-        $scope.assigned = tarefa.assigned
-        $scope.opinion = tarefa.opinion
-        $scope.canCreateUser = false;
-        $scope.canCreateAssignment = true;
-
     }
 
     function editarUser(user) {
@@ -181,7 +90,7 @@ angular.module("Administrador", ['ngRoute']).controller("AdministradorController
     }
 
 
-    function daoUserfaGetAll() {
+    function getAllUser() {
         $http.get("http://localhost:5001/user/tudo").then(function (response) {
             $scope.users = response.data.content
         });
@@ -197,28 +106,6 @@ angular.module("Administrador", ['ngRoute']).controller("AdministradorController
                 return
             }
         });
-    }
-
-
-    function loginAcess(login, senha) {
-        $http.get("http://localhost:5001/login/" + login + "," + senha).then(function (response) {
-            $scope.UserLoginPerfil = response.data;
-            if (response.data != "Acesso não autorizado") {
-                verifyPerfil()
-            } else {
-                $window.alert(response.data)
-            }
-
-        });
-    }
-
-    function verifyPerfil() {
-        $scope.usuarioSim = true;
-        toGoHome()
-    }
-
-    function toGoHome() {
-        window.location.href = "/home";
     }
 
     function sair() {

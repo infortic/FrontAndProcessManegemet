@@ -1,14 +1,3 @@
-// const app = angular.module('ManegementProcess');
-// app.config(function ($routeProvider){
-//     $routeProvider.when('/home', {
-//         templateUrl: 'home.html',
-//     })
-
-//     $routeProvider.when('/medio', {
-//         templateUrl: 'triador.html',
-//     })
-// });
-
 angular.module("ManegementProcess", ['ngRoute']).controller("ManegementProcessCTRL", function ($scope, $http, $window) {
 
     $scope.canCreateUser = true;
@@ -24,7 +13,6 @@ angular.module("ManegementProcess", ['ngRoute']).controller("ManegementProcessCT
             } else {
                 $window.alert(response.data)
             }
-
         });
     }
 

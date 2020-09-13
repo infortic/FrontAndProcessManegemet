@@ -2,79 +2,13 @@ angular.module("Finalizador", ['ngRoute']).controller("FinalizadorController", f
 
     $scope.canCreateUser = true;
     $scope.canCreateAssignment = false;
-    $scope.saveUser = saveUser;
-    $scope.toGoAssignment = toGoAssignment;
     $scope.cancelAssignment = cancelAssignment;
     $scope.saveTarefa = saveTarefa;
-    $scope.removerTarefa = removerTarefa;
     $scope.editarTarefa = editarTarefa;
     $scope.sair = sair;
     init()
     function init() {
         daoTarefaGetAll()
-    }
-
-    function saveUser(nome, login, password, password2, perfil, id) {
-        if (id != null) {
-            const user1 = {
-                "LOGIN": login,
-                "nome": nome,
-                "PERFIL": perfil,
-                "PASSWORD": password,
-                "PASSWORD2": password2,
-                "id": id
-            }
-            daoUser(user1)
-        } else {
-            const user2 = {
-                "LOGIN": login,
-                "nome": nome,
-                "PERFIL": perfil,
-                "PASSWORD": password,
-                "PASSWORD2": password2,
-            }
-            daoUser(user2)
-        }
-    }
-
-    function validatyUser(data) {
-        if (data.LOGIN == null) {
-            $window.alert("O campo LOGIN deve ser preenchido")
-            return;
-        } else if (data.PERFIL == null) {
-            $window.alert("Por favor escolha um PERFIL")
-            return;
-        } else if (data.PASSWORD == null) {
-            $window.alert("O campo PASSWORD deve ser preenchido")
-            return;
-        } else if (data.PASSWORD2 == null) {
-            $window.alert("Os campos PASSWORD2 são obrigatorios")
-            return;
-        } else {
-            if (data.PASSWORD != data.PASSWORD2) {
-                $window.alert("Senhas diferentes informadas")
-                return;
-            }
-        }
-        return true;
-    }
-
-    function daoUser(data) {
-        if (validatyUser(data)) {
-            $http.post("http://localhost:5001/user/salvar", data)
-                .then(() => {
-                    $window.alert("Usuário salvo com sucesso")
-                    $window.location.reload();
-                }, (response)=> {
-                    $window.alert("Este login já esta em uso! por favor escolha outro!")
-                });
-        }
-    }
-
-    function toGoAssignment() {
-        $scope.nome = ""
-        $scope.canCreateUser = false;
-        $scope.canCreateAssignment = true;
     }
 
     function cancelAssignment() {
@@ -129,18 +63,6 @@ angular.module("Finalizador", ['ngRoute']).controller("FinalizadorController", f
             if (response.status == 200) {
                 $scope.tarefas = response.data
 
-            } else {
-                return
-            }
-        });
-    }
-
-    function removerTarefa(id) {
-
-        $http.delete("http://localhost:5001/tarefa/deletar/" + id).then(function (response) {
-            if (response.status == 200) {
-                init()
-                // location.reload();
             } else {
                 return
             }
