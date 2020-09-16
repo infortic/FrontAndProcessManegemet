@@ -32,7 +32,7 @@ Funcionalidade:
 - visualizar usuários.
 
 
-###Tipos de Perfil  de usuário: 
+## Tipos de Perfil  de usuário: 
 
 **Usuário: administrador
 **Senha: administrador 
