@@ -17,20 +17,22 @@ Funcionalidade:
 - Incluir Parecer Sobre Determinada Tarefa
 
 
-
 `Usuários`
 - Incluir Usuário 
 - Editar Usuário
 - excluir Usuário
 - definir perfil
 
-Tipos de Perfil  de usuário: 
+
 
 `- administrador`
 - Incluir
 - excluir
 - atualizar
 - visualizar usuários.
+
+
+##Tipos de Perfil  de usuário: 
 
 **Usuário: administrador
 **Senha: administrador 
