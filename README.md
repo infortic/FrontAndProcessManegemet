@@ -27,7 +27,10 @@ Funcionalidade:
 Tipos de Perfil  de usuário: 
 
 `- administrador`
-.Incluir, excluir, atualizar e visualizar usuários.
+- Incluir
+- excluir
+- atualizar
+- visualizar usuários.
 
 **Usuário: administrador
 **Senha: administrador 
